@@ -2,84 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>QR Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>QR Code Generator</title>
 </head>
 <body>
-    <div class="title">
-        <h1>QR Code Generator</h1>
-        <h2>Insert a link below to generate a QR Code</h2>
-    </div>
+    <div class="container">
+        <div class="title">
+            <h1>QR Code Generator</h1>
+            <p>Enter a URL to create a unique QR code in seconds!</p>
+        </div>
 
-    <form action="/" method="POST" >
-        <input type="text" name= "link">
-        <button type="submit">Generate QR</button>
-    </form>
-    {% if data%}
-    <div class="generated">
-        <img src="{{data}}" alt="" />
-        <p>Here is the QR code we generated for you </p>
+        <form action="/" method="POST">
+            <input type="text" name="link" placeholder="Enter your link here..." required>
+            <button type="submit">Generate QR</button>
+        </form>
+
+        {% if data %}
+        <div class="generated">
+            <img src="{{data}}" alt="Generated QR Code" />
+            <p>Your QR code is ready! Save or share it with others.</p>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
 </body>
 </html>
 
 <style>
+    /* Reset and Global Styles */
     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    html,
-    body{
-        margin: 0rem 10rem;
-        font-family: "Poppins";
-    }
-
-    .title {
-        padding: 6rem;
+    html, body {
+        font-family: 'Poppins', sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        height: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 2rem;
         justify-content: center;
         align-items: center;
-        color: rbg(37,37,37);
+        padding: 1rem;
+    }
+
+    .container {
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .title h1 {
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .title p {
+        font-weight: 300;
+        color: #666;
+        margin-bottom: 2rem;
     }
 
     form {
         display: flex;
+        gap: 1rem;
         justify-content: center;
-        align-items: center
-        gap: 2rem;
+        align-items: center;
     }
 
     form input {
-        font-size: 1.2rem;
-        padding: 0.5rem 1rem;
-        width: 50%;
-        color: black;
-        margin-right: 0.5rem;
+        flex: 1;
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    form input:focus {
+        border-color: #294079;
     }
 
     form button {
         font-size: 1rem;
-        background: rgb(41, 64, 121);
-        border: none;
+        font-weight: 600;
+        background: #294079;
         color: white;
-        padding: 1rem 1.5rem;
-        cursor: pointer;
+        border: none;
+        padding: 0.75rem 1.5rem;
         border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    form button:hover {
+        background: #1e305c;
     }
 
     .generated {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+        margin-top: 2rem;
+        text-align: center;
+    }
 
+    .generated img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+    }
 
+    .generated p {
+        font-size: 1rem;
+        color: #555;
     }
 </style>
